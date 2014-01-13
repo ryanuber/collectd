@@ -1,0 +1,5 @@
+collectd (5.4.0) stable; urgency=low
+
+  * Initial deb release.
+
+ -- Ryan Uber <ru@ryanuber.com>  Thu, 09 Jan 2014 14:32:22 -0800

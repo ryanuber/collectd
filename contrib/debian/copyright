@@ -1,0 +1,8 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: collectd
+Source: https://github.com/collectd/collectd
+
+Files: *
+Copyright: 2014 Ryan Uber
+License: GPL-2
+ See /usr/share/common-licenses/GPL-2
