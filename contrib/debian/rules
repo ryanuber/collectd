@@ -1,23 +1,23 @@
 #!/usr/bin/make -f
+
 clean:
-	dh_testdir
-	dh_testroot
-	dh_clean
-
-configure:
-	dh_testdir
-	./configure
-
-build:
-	dh_testdir
-	echo "woo"
+	dh_auto_clean
 
 install:
 	dh_testdir
 	dh_testroot
-	dh_clean -k
-	dh_installdirs
+	dh_install
+
+configure:
+	dh_testdir
+	dh_auto_configure
+
+build:
+	dh_auto_build
+	mkdir -p debian/collectd/lib/systemd/system debian/collectd/etc/init
+	cp contrib/collectd.service debian/collectd/lib/systemd/system
+	cp contrib/upstart.collectd.conf /etc/init/collectd.conf
 
 binary: configure build install
 
-.PHONY: build clean binary install configure
+.PHONY: install configure build binary clean
