@@ -1,23 +1,271 @@
 #!/usr/bin/make -f
 
-clean:
-	dh_auto_clean
+with_aggregation="--disable-aggregation"
+with_amqp="--disable-amqp"
+with_apache="--disable-apache"
+with_apcups="--disable-apcups"
+with_apple_sensors="--disable-apple_sensors"
+with_aquaero="--disable-aquaero"
+with_ascent="--disable-ascent"
+with_battery="--disable-battery"
+with_bind="--disable-bind"
+with_cgroups="--disable-cgroups"
+with_conntrack="--disable-conntrack"
+with_contextswitch="--disable-contextswitch"
+with_cpu="--enable-cpu"
+with_cpufreq="--enable-cpufreq"
+with_csv="--disable-csv"
+with_curl="--disable-curl"
+with_curl_json="--disable-curl_json"
+with_curl_xml="--disable-curl_xml"
+with_dbi="--disable-dbi"
+with_libdbi="--disable-libdbi"
+with_df="--disable-df"
+with_disk="--enable-disk"
+with_dns="--disable-dns"
+with_email="--disable-email"
+with_entropy="--disable-entropy"
+with_ethstat="--disable-ethstat"
+with_exec="--enable-exec"
+with_filecount="--disable-filecount"
+with_fscache="--disable-fscache"
+with_gmond="--disable-gmond"
+with_hddtemp="--disable-hddtemp"
+with_interface="--enable-interface"
+with_ipmi="--disable-ipmi"
+with_iptables="--disable-iptables"
+with_ipvs="--disable-ipvs"
+with_java="--disable-java"
+with_libvirt="--disable-libvirt"
+with_lpar="--disable-lpar"
+with_lvm="--disable-lvm"
+with_memcachec="--disable-memcachec"
+with_mic="--disable-mic"
+with_modbus="--disable-modbus"
+with_multimeter="--disable-multimeter"
+with_mysql="--disable-mysql"
+with_netapp="--disable-netapp"
+with_netlink="--disable-netlink"
+with_nginx="--disable-nginx"
+with_notify_desktop="--disable-notify_desktop"
+with_notify_email="--disable-notify_email"
+with_libesmtp="--disable-libesmtp"
+with_nut="--disable-nut"
+with_onewire="--disable-onewire"
+with_oracle="--disable-oracle"
+with_perl="--disable-perl"
+with_pf="--disable-pf"
+with_pinba="--disable-pinba"
+with_ping="--disable-ping"
+with_postgresql="--disable-postgresql"
+with_python="--disable-python"
+with_redis="--disable-redis"
+with_routeros="--disable-routeros"
+with_rrdcached="--disable-rrdcached"
+with_rrdtool="--disable-rrdtool"
+with_sensors="--disable-sensors"
+with_sigrok="--disable-sigrok"
+with_snmp="--disable-snmp"
+with_tape="--disable-tape"
+with_tokyotyrant="--disable-tokyotyrant"
+with_varnish="--disable-varnish"
+with_write_http="--disable-write_http"
+with_write_mongodb="--disable-write_mongodb"
+with_libmongoc="--disable-libmongoc"
+with_write_redis="--disable-write_redis"
+with_libcredis="--disable-libredisc"
+with_xmms="--disable-xmms"
+with_zfs_arc="--disable-zfs_arc"
+with_irq="--disable-irq"
+with_load="--enable-load"
+with_logfile="--enable-logfile"
+with_madwifi="--disable-madwifi"
+with_mbmon="--disable-mbmon"
+with_md="--disable-md"
+with_memcached="--enable-memcached"
+with_memory="--enable-memory"
+with_network="--enable-network"
+with_nfs="--disable-nfs"
+with_ntpd="--disable-ntpd"
+with_numa="--disable-numa"
+with_olsrd="--disable-olsrd"
+with_openvpn="--disable-openvpn"
+with_powerdns="--disable-powerdns"
+with_processes="--enable-processes"
+with_protocols="--enable-protocols"
+with_serial="--disable-serial"
+with_statsd="--enable-statsd"
+with_swap="--enable-swap"
+with_syslog="--enable-syslog"
+with_table="--disable-table"
+with_tail="--disable-tail"
+with_tail_csv="--disable-tail_csv"
+with_tcpconns="--disable-tcpconns"
+with_teamspeak2="--disable-teamspeak2"
+with_ted="--disable-ted"
+with_thermal="--disable-thermal"
+with_threshold="--disable-threshold"
+with_unixsock="--enable-unixsock"
+with_uptime="--enable-uptime"
+with_users="--enable-users"
+with_uuid="--enable-uuid"
+with_vmem="--enable-vmem"
+with_vserver="--disable-vserver"
+with_wireless="--disable-wireless"
+with_write_graphite="--enable-write_graphite"
+with_write_http="--disable-write_http"
+with_write_riemann="--disable-write_riemann"
 
-install:
-	dh_testdir
-	dh_testroot
-	dh_install
+%:
+	dh $@
 
-configure:
-	dh_testdir
-	dh_auto_configure
+override_dh_auto_configure:
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--disable-static \
+		--without-included-ltdl \
+		--enable-match_empty_counter \
+		--enable-match_hashed \
+		--enable-match_regex \
+		--enable-match_timediff \
+		--enable-match_value \
+		--enable-target_notification \
+		--enable-target_replace \
+		--enable-target_scale \
+		--enable-target_set \
+		--enable-target_v5upgrade \
+		--enable-python \
+		--enable-perl \
+		$(with_aggregation) \
+		$(with_amqp) \
+		$(with_apache) \
+		$(with_apcups) \
+		$(with_apple_sensors) \
+		$(with_aquaero) \
+		$(with_ascent) \
+		$(with_battery) \
+		$(with_bind) \
+		$(with_cgroups) \
+		$(with_conntrack) \
+		$(with_contextswitch) \
+		$(with_cpu) \
+		$(with_cpufreq) \
+		$(with_csv) \
+		$(with_curl) \
+		$(with_curl_json) \
+		$(with_curl_xml) \
+		$(with_dbi) \
+		$(with_libdbi) \
+		$(with_df) \
+		$(with_disk) \
+		$(with_dns) \
+		$(with_email) \
+		$(with_libesmtp) \
+		$(with_entropy) \
+		$(with_ethstat) \
+		$(with_exec) \
+		$(with_filecount) \
+		$(with_fscache) \
+		$(with_gmond) \
+		$(with_hddtemp) \
+		$(with_interface) \
+		$(with_ipmi) \
+		$(with_iptables) \
+		$(with_ipvs) \
+		$(with_java) \
+		$(with_libvirt) \
+		$(with_lpar) \
+		$(with_lvm) \
+		$(with_memcachec) \
+		$(with_mic) \
+		$(with_modbus) \
+		$(with_multimeter) \
+		$(with_mysql) \
+		$(with_netapp) \
+		$(with_netlink) \
+		$(with_nginx) \
+		$(with_notify_desktop) \
+		$(with_notify_email) \
+		$(with_nut) \
+		$(with_onewire) \
+		$(with_oracle) \
+		$(with_perl) \
+		$(with_pf) \
+		$(with_pinba) \
+		$(with_ping) \
+		$(with_postgresql) \
+		$(with_python) \
+		$(with_redis) \
+		$(with_routeros) \
+		$(with_rrdcached) \
+		$(with_rrdtool) \
+		$(with_sensors) \
+		$(with_sigrok) \
+		$(with_snmp) \
+		$(with_tape) \
+		$(with_tokyotyrant) \
+		$(with_varnish) \
+		$(with_write_http) \
+		$(with_write_mongodb) \
+		$(with_libmongoc) \
+		$(with_write_redis) \
+		$(with_libcredis) \
+		$(with_xmms) \
+		$(with_zfs_arc) \
+		$(with_irq) \
+		$(with_load) \
+		$(with_logfile) \
+		$(with_madwifi) \
+		$(with_mbmon) \
+		$(with_md) \
+		$(with_memcached) \
+		$(with_memory) \
+		$(with_network) \
+		$(with_nfs) \
+		$(with_ntpd) \
+		$(with_numa) \
+		$(with_olsrd) \
+		$(with_openvpn) \
+		$(with_powerdns) \
+		$(with_processes) \
+		$(with_protocols) \
+		$(with_serial) \
+		$(with_statsd) \
+		$(with_swap) \
+		$(with_syslog) \
+		$(with_table) \
+		$(with_tail) \
+		$(with_tail_csv) \
+		$(with_tcpconns) \
+		$(with_teamspeak2) \
+		$(with_ted) \
+		$(with_thermal) \
+		$(with_threshold) \
+		$(with_unixsock) \
+		$(with_uptime) \
+		$(with_users) \
+		$(with_uuid) \
+		$(with_vmem) \
+		$(with_vserver) \
+		$(with_wireless) \
+		$(with_write_graphite) \
+		$(with_write_http) \
+		$(with_write_riemann)
 
-build:
-	dh_auto_build
-	mkdir -p debian/collectd/lib/systemd/system debian/collectd/etc/init
-	cp contrib/collectd.service debian/collectd/lib/systemd/system
-	cp contrib/upstart.collectd.conf /etc/init/collectd.conf
+#build:
+#	dh_auto_build
+#	mkdir -p $(CURDIR)/debian/collectd/lib/systemd/system
+#	mkdir -p $(CURDIR)/debian/collectd/etc/init
+#	cp contrib/collectd.service \
+#		$(CURDIR)/debian/collectd/lib/systemd/system
+#	cp contrib/upstart.collectd.conf \
+#		$(CURDIR)/debian/collectd/etc/init/collectd.conf
 
-binary: configure build install
+#binary: configure build install
+#	dh_gencontrol
 
-.PHONY: install configure build binary clean
+#binary-arch: binary
+
+
+#.PHONY: configure build binary
