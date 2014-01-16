@@ -253,19 +253,11 @@ override_dh_auto_configure:
 		$(with_write_http) \
 		$(with_write_riemann)
 
-#build:
-#	dh_auto_build
-#	mkdir -p $(CURDIR)/debian/collectd/lib/systemd/system
-#	mkdir -p $(CURDIR)/debian/collectd/etc/init
-#	cp contrib/collectd.service \
-#		$(CURDIR)/debian/collectd/lib/systemd/system
-#	cp contrib/upstart.collectd.conf \
-#		$(CURDIR)/debian/collectd/etc/init/collectd.conf
-
-#binary: configure build install
-#	dh_gencontrol
-
-#binary-arch: binary
-
-
-#.PHONY: configure build binary
+override_dh_auto_build:
+	dh_auto_build
+	mkdir -p $(CURDIR)/debian/collectd/lib/systemd/system
+	mkdir -p $(CURDIR)/debian/collectd/etc/init
+	cp contrib/collectd.service \
+		$(CURDIR)/debian/collectd/lib/systemd/system
+	cp contrib/upstart.collectd.conf \
+		$(CURDIR)/debian/collectd/etc/init/collectd.conf
