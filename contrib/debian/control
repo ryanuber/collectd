@@ -3,7 +3,8 @@ Maintainer: Ryan Uber <ru@ryanuber.com>
 Section: admin
 Priority: optional
 Standards-Version: 3.9.3
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9), libcurl4-gnutls-dev, libmysqlclient-dev,
+ liboping-dev, libxml2-dev, libyajl-dev
 
 Package: collectd
 Architecture: i386 amd64
