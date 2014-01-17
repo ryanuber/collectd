@@ -3,6 +3,6 @@ Upstream-Name: collectd
 Source: https://github.com/collectd/collectd
 
 Files: *
-Copyright: 2014 Ryan Uber
+Copyright: Florian octo Forster
 License: GPL-2
  See /usr/share/common-licenses/GPL-2
