@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
-with_aggregation=0
+with_aggregation=1
 with_amqp=0
-with_apache=0
+with_apache=1
 with_apcups=0
 with_apple_sensors=0
 with_aquaero=0
@@ -13,21 +13,21 @@ with_cgroups=0
 with_conntrack=0
 with_contextswitch=0
 with_cpu=1
-with_cpufreq=1
+with_cpufreq=0
 with_csv=0
-with_curl=0
-with_curl_json=0
-with_curl_xml=0
+with_curl=1
+with_curl_json=1
+with_curl_xml=1
 with_dbi=0
 with_libdbi=0
-with_df=0
+with_df=1
 with_disk=1
 with_dns=0
 with_email=0
-with_entropy=0
+with_entropy=1
 with_ethstat=0
 with_exec=1
-with_filecount=0
+with_filecount=1
 with_fscache=0
 with_gmond=0
 with_hddtemp=0
@@ -43,7 +43,7 @@ with_memcachec=0
 with_mic=0
 with_modbus=0
 with_multimeter=0
-with_mysql=0
+with_mysql=1
 with_netapp=0
 with_netlink=0
 with_nginx=0
@@ -56,7 +56,7 @@ with_oracle=0
 with_perl=0
 with_pf=0
 with_pinba=0
-with_ping=0
+with_ping=1
 with_postgresql=0
 with_python=0
 with_redis=0
@@ -69,7 +69,7 @@ with_snmp=0
 with_tape=0
 with_tokyotyrant=0
 with_varnish=0
-with_write_http=0
+with_write_http=1
 with_write_mongodb=0
 with_libmongoc=0
 with_write_redis=0
@@ -98,23 +98,32 @@ with_statsd=1
 with_swap=1
 with_syslog=1
 with_table=0
-with_tail=0
+with_tail=1
 with_tail_csv=0
-with_tcpconns=0
+with_tcpconns=1
 with_teamspeak2=0
 with_ted=0
 with_thermal=0
 with_threshold=0
 with_unixsock=1
 with_uptime=1
-with_users=1
-with_uuid=1
+with_users=0
+with_uuid=0
 with_vmem=1
 with_vserver=0
 with_wireless=0
 with_write_graphite=1
-with_write_http=0
 with_write_riemann=0
+match_empty_counter=1
+match_hashed=1
+match_regex=1
+match_timediff=1
+match_value=1
+target_notification=1
+target_replace=1
+target_scale=1
+target_set=1
+target_v5upgrade=0
 
 FEATURES=
 FEATURE_NAMES=aggregation amqp apache apcups apple_sensors aquaero ascent \
@@ -128,7 +137,9 @@ write_http write_mongodb libmongoc write_redis libcredis xmms zfs_arc irq load \
 logfile madwifi mbmon md memcached memory network nfs ntpd numa olsrd openvpn \
 powerdns processes protocols serial statsd swap syslog table tail tail_csv \
 tcpconns teamspeak2 ted thermal threshold unixsock uptime users uuid vmem \
-vserver wireless write_graphite
+vserver wireless write_graphite match_empty_counter match_hashed match_regex \
+match_timediff match_value target_notification target_replace target_scale \
+target_set target_v5upgrade
 
 define FEATURE
 ifeq ($$(with_$1),1)
@@ -150,16 +161,6 @@ override_dh_auto_configure:
 		--sysconfdir=/etc \
 		--disable-static \
 		--without-included-ltdl \
-		--enable-match_empty_counter \
-		--enable-match_hashed \
-		--enable-match_regex \
-		--enable-match_timediff \
-		--enable-match_value \
-		--enable-target_notification \
-		--enable-target_replace \
-		--enable-target_scale \
-		--enable-target_set \
-		--enable-target_v5upgrade \
 		$(FEATURES)
 
 override_dh_auto_build:
