@@ -155,7 +155,6 @@ $(foreach ft,$(FEATURE_NAMES),$(eval $(call FEATURE,$(ft))))
 	dh $@
 
 override_dh_auto_configure:
-	@echo $(FLAGS)
 	./configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \
